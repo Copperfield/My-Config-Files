@@ -1,0 +1,36 @@
+#! /usr/bin/python
+# coding: UTF-8
+#
+# Author: David García (miemailito@gmail.com)
+#
+# Este script instalará en cualquier sistema los elementos 
+# y aplicaciones necesarios para dejar el sistema funcionando
+#
+# TODO: Esto funcionará para Windows, Mac y Linux pero de momento
+# sólo para linux.
+
+
+
+# Instalar Vim
+# Instalar OhMyZsh
+# Si procede cambiar el xorg.conf para dos monitores
+"""
+Este archivo es de ejemplo apra probar cosas de momento
+
+"""
+class B(Exception):
+     pass
+class C(B):
+     pass
+class D(C):
+     pass
+
+for c in [B, C, D]:
+    try:
+        raise c()
+    except D:
+        print("D")
+    except C:
+        print("C")
+    except B:
+        print("B")

@@ -1,0 +1,10 @@
+#!/usr/bin/python
+
+if __name__ == "__main__":
+    import os
+    
+    list=["/home/david/NetBeansProjects/iberApplication"]
+        
+    for x in list:
+         os.chdir(x)
+         os.system("vagrant suspend")
