@@ -19,8 +19,13 @@
 import os
 
 def detectOs():
+    """
+    Función que devuelve el sistema operativo usado
+    """
 
-    print "Detectando tú sistema operativo....\033[1;32m OK"
+    print "Detectando tú sistema operativo....\033[1;32m OK \033[0m"
     return os.name
 
-detectOs()
+
+if __name__ == "__main__":
+    detectOs()
