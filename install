@@ -1,36 +1,26 @@
 #! /usr/bin/python
 # coding: UTF-8
 #
-# Author: David García (miemailito@gmail.com)
+# Author: David García (miemailito@gmail.com) Github: Copperfield
 #
 # Este script instalará en cualquier sistema los elementos 
-# y aplicaciones necesarios para dejar el sistema funcionando
+# y aplicaciones para construir la personalización
 #
 # TODO: Esto funcionará para Windows, Mac y Linux pero de momento
 # sólo para linux.
+#
+# TODO:Mirar una herramienta de colores (colorama...)
 
-
-
+# Detectar sistema operativo
 # Instalar Vim
 # Instalar OhMyZsh
 # Si procede cambiar el xorg.conf para dos monitores
-"""
-Este archivo es de ejemplo apra probar cosas de momento
 
-"""
-class B(Exception):
-     pass
-class C(B):
-     pass
-class D(C):
-     pass
+import os
 
-for c in [B, C, D]:
-    try:
-        raise c()
-    except D:
-        print("D")
-    except C:
-        print("C")
-    except B:
-        print("B")
+def detectOs():
+
+    print "Detectando tú sistema operativo....\033[1;32m OK"
+    return os.name
+
+detectOs()
