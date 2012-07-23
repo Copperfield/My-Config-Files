@@ -17,9 +17,9 @@
 # Si procede cambiar el xorg.conf para dos monitores
 
 import os
-from shutil import copy2
+from shutil import copy2, copytree
 
-yes=["s","si","SI","Sí","SÍ","yes","Yes","YEs","YES"]
+yes=["s","si","SI","Sí","SÍ","yes","Yes","YEs","YES","y"]
 
 def detectOs():
     """
@@ -29,21 +29,29 @@ def detectOs():
     print "Detectando tú sistema operativo....\033[1;32m OK \033[0m"
     return os.name
 
-def configAndInstall(name, path, install=True):
+def configAndInstall(name, pathDst=os.getenv("HOME"), dst='/', install=True):
     """
     Configura e aplicacion
     """
-    
-    response = raw_input("¿Deseas instalar y configurar \033[1;33m"+ name +"\033[0m (SI | no): ")
+    # Listar los directorios
+    names = os.listdir(str(name))
+    response = raw_input("¿Deseas instalar y configurar \033[1;33m" + name + "\033[0m (SI | no): ")
     if response in yes:
+        # Instalar el paquete
         if install:
-            os.system("sudo apt-get install "+ name)
-        for x in path:
-            copy2(name+ "/" + path, os.getenv("HOME") + "/" + path)
-        print "\033[1;33m Instalando "+ name+ "\033[0m .... \033[1;32m OK \033[0m"
+            os.system("sudo apt-get install " + name)
+        # Copiar los directorios y fcheros necesarios
+        for files in names:
+            ret =+ os.system("cp -r "+ name + "/" + files + " "+ pathDst+"/")
+        if ret:
+            status= "\033[1;31m FAIL \033[0m"
+        else:
+            status= "\033[1;32m OK \033[0m"
+        print "Configurando \033[1;33m "+ name+ "\033[0m .... " + status
 
-   
+# Hilo de ejecución principal   
 if __name__ == "__main__":
-    detectOs()
-    #TODO: Añadir el directorio /.vim para los plugin 
-    configAndInstall("vim",".vimrc")
+    nameOs = detectOs()
+    if nameOs == "posix":
+        #TODO: Añadir el directorio /.vim para los plugin 
+        configAndInstall("vim")
