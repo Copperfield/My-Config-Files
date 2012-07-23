@@ -9,7 +9,7 @@
 # TODO: Esto funcionará para Windows, Mac y Linux pero de momento
 # sólo para linux.
 #
-# TODO:Mirar una herramienta de colores (colorama...)
+# TODO: Mirar una herramienta de colores (colorama...)
 
 # Detectar sistema operativo
 # Instalar Vim
@@ -17,6 +17,9 @@
 # Si procede cambiar el xorg.conf para dos monitores
 
 import os
+from shutil import copy2
+
+yes=["s","si","SI","Sí","SÍ","yes","Yes","YEs","YES"]
 
 def detectOs():
     """
@@ -26,6 +29,21 @@ def detectOs():
     print "Detectando tú sistema operativo....\033[1;32m OK \033[0m"
     return os.name
 
+def configAndInstall(name, path, install=True):
+    """
+    Configura e aplicacion
+    """
+    
+    response = raw_input("¿Deseas instalar y configurar \033[1;33m"+ name +"\033[0m (SI | no): ")
+    if response in yes:
+        if install:
+            os.system("sudo apt-get install "+ name)
+        for x in path:
+            copy2(name+ "/" + path, os.getenv("HOME") + "/" + path)
+        print "\033[1;33m Instalando "+ name+ "\033[0m .... \033[1;32m OK \033[0m"
 
+   
 if __name__ == "__main__":
     detectOs()
+    #TODO: Añadir el directorio /.vim para los plugin 
+    configAndInstall("vim",".vimrc")
