@@ -1,2 +1,8 @@
-te repositorio contendrá los elementos necesarios para personalizar un
+Este repositorio contendrá los elementos necesarios para personalizar un
 sistema a mi gusto. Ya sea linux, windows o mac.
+
+VERSION 0.35
+
+- vim
+- xorg
+- ohMyZsh
