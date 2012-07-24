@@ -4,22 +4,21 @@
 # Author: David García (miemailito@gmail.com) Github: Copperfield
 # Version: 0.35
 
-# Este script instalará en cualquier sistema los elementos 
-# y aplicaciones para construir la personalización
+# This script will install the basic tools in any system (Linux, windows or
+# mac)
 #
-# TODO: Esto funcionará para Windows, Mac y Linux pero de momento
-# sólo para linux.
+# TODO: It's work for windows, but still not work
 #
-# TODO: Mirar una herramienta de colores (colorama...)
+# TODO: Search tools for colors (colorama...)
 #
-# TODO: Peparar funcióm para sacar del código los mensajes de error
-# TODO: Añadir contol de excepciones
+# TODO: Create a function for get out code of colors
+# TODO: Add exeption code
 
 
-# Detectar sistema operativo OK
-# Instalar Vim (Faltan archivos por agregar a las carpetas)
-# Instalar OhMyZsh OK
-# Si procede cambiar el xorg.conf para dos monitores OK
+# Detect operating system OK
+# Install Vim (missing files) ...
+# Install OhMyZsh OK
+# xorg.conf for multi-screem OK
 
 import os
 from shutil import copy2, copytree
@@ -28,7 +27,7 @@ yes=["s","si","SI","Sí","SÍ","yes","Yes","YEs","YES","y"]
 
 def detectOs():
     """
-    Función que devuelve el sistema operativo usado
+    Operating system detect used
     """
 
     print "Detectando tú sistema operativo....\033[1;32m OK \033[0m"
@@ -36,10 +35,10 @@ def detectOs():
 
 def configAndInstall(name, pathDst = os.getenv("HOME"), dst='/', install=True):
     """
-    Método genérico para instalar las aplicaciones
+    Generic method for install and configure programs
     """
    
-    # Listar los directorios
+    # List of directory
     ret = ""
     names = os.listdir(str(name))
     response = raw_input("¿Deseas instalar y configurar \033[1;33m" + name + "\033[0m (SI | no): ")
@@ -49,18 +48,18 @@ def configAndInstall(name, pathDst = os.getenv("HOME"), dst='/', install=True):
             os.system("./install")
             os.chdir("..")
         else:
-            # Instalar el paquete
+            # Install package
             if install:
                 os.system("sudo apt-get install " + name)
-                # Copiar los directorios y fcheros necesarios
+                # Copy the need files and directorys
                 for files in names:
                    ret =+ os.system("cp -r "+ name + "/" + files + " "+ pathDst+"/")
-        # Añado los códigos de colores
+        # Add colors codes 
         status = ("\033[1;33m FAIL \033[0m" if ret else "\033[1;32m OK \033[0m") 
         print "Configurando \033[1;33m "+ name + "\033[0m  finalizada.... " + status
 
 
-# Hilo de ejecución principal   
+# Main thread    
 if __name__ == "__main__":
     nameOs = detectOs()
     if nameOs == "posix": 
