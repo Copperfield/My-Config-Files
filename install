@@ -10,9 +10,12 @@
 # sólo para linux.
 #
 # TODO: Mirar una herramienta de colores (colorama...)
+#
+# TODO: Peparar funcióm para sacar del código los mensajes de error
 
-# Detectar sistema operativo
-# Instalar Vim
+
+# Detectar sistema operativo OK
+# Instalar Vim (Faltan archivos por agregar a las carpetas)
 # Instalar OhMyZsh
 # Si procede cambiar el xorg.conf para dos monitores
 
@@ -34,23 +37,29 @@ def configAndInstall(name, pathDst=os.getenv("HOME"), dst='/', install=True):
     Configura e aplicacion
     """
     # Listar los directorios
+    status ="\033[1;32m OK \033[0m"
+    ret = ""
     names = os.listdir(str(name))
     response = raw_input("¿Deseas instalar y configurar \033[1;33m" + name + "\033[0m (SI | no): ")
     if response in yes:
-         if "install" in names:
-             os.system("./install")
-         else:
-         # Instalar el paquete
-             if install:
-                  os.system("sudo apt-get install " + name)
-                  # Copiar los directorios y fcheros necesarios
-                  for files in names:
-                      ret =+ os.system("cp -r "+ name + "/" + files + " "+ pathDst+"/")
-                      if ret:
-                           status= "\033[1;31m FAIL \033[0m"
-                      else:
-                           status= "\033[1;32m OK \033[0m"
-         print "Configurando \033[1;33m "+ name+ "\033[0m .... " + status
+        if "install" in names:
+            print "Install local detectado..."
+            os.chdir(name)
+            os.system("./install")
+        else:
+            # Instalar el paquete
+            if install:
+                os.system("sudo apt-get install " + name)
+                # Copiar los directorios y fcheros necesarios
+                for files in names:
+                   ret =+ os.system("cp -r "+ name + "/" + files + " "+ pathDst+"/")
+        if ret:
+            status= "\033[1;31m FAIL \033[0m"
+        else:
+            status= "\033[1;32m OK \033[0m"
+
+        print "Configurando \033[1;33m "+ name+ "\033[0m .... " + status
+
 
 # Hilo de ejecución principal   
 if __name__ == "__main__":
