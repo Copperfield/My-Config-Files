@@ -16,8 +16,9 @@
 
 
 # Detect operating system OK
-# Install Vim (missing files) ...
+# Install Vim OK
 # Install OhMyZsh OK
+# Install vagrant WAIT
 # xorg.conf for multi-screem OK
 
 import os
