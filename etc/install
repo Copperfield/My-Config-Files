@@ -1,0 +1,8 @@
+#! /usr/bin/python
+# coding: UTF-8
+#
+# Author: David García (miemailito@gmail.com) Github: Copperfield
+
+import os
+
+os.system("sudo cp ./xorg.conf /etc/X11")

@@ -1,0 +1,9 @@
+#! /usr/bin/python
+# coding: UTF-8
+
+import os
+
+os.system("sudo apt-get install curl")
+os.system("curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh")
+os.system("cp zshrc " + os.getenv("HOME") + "/zshrc")
+

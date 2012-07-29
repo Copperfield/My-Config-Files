@@ -1,0 +1,17 @@
+##! /usr/bin/python
+# coding: UTF-8
+#
+# Author: David García (miemailito@gmail.com) Github: Copperfield
+#
+# Este script sirve para evitar que vagrant se quede colgado si se nos olvida hacer el suspend correspondiente.
+# Se agregará a los script de reseteo y apagado del sistema.
+
+
+if __name__ == "__main__":
+    import os
+    
+    list=["/home/david/NetBeansProjects/iberApplication"]
+        
+    for x in list:
+         os.chdir(x)
+         os.system("vagrant suspend")
