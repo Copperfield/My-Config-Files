@@ -13,7 +13,7 @@
 #
 # TODO: Create a function for get out code of colors
 # TODO: Add exeption code
-
+# TODO: Add install into vim directory in order to install ctags package
 
 # Detect operating system OK
 # Install Vim OK
